@@ -186,14 +186,6 @@ class CalculatorViewModel : ViewModel() {
             val nextNum = nextNumStr?.toDoubleOrNull()
 
             if (nextNum == null) {
-                // If we have an operation like "5 * =" (waiting for second operand)
-                // Some calculators repeat the last operation with the same number "5 * 5"
-                // Others show error or do nothing. For now, let's treat as error or incomplete.
-                // Or, if we want "5 * =" to result in "5", then the logic above (allNumbers.size <= state.operations.size) handles it.
-                // For a more robust approach, decide the behavior for "5 * =".
-                // If it should be an error or just show 5.
-                // The earlier check for "allNumbers.size <= state.operations.size" should catch "5*="
-                // and just display "5" as the result.
                 Log.d("CalculatorVM", "PerformCalc: Subsequent number is not valid or missing for operation ${state.operations[i].symbol}.")
                 // state = state.copy(result = "Error") // Or handle as per desired UX
                 return
